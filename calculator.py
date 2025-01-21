@@ -1,3 +1,8 @@
+from math import log10, log, e
+
+from complex_operations import ln, factorial
+
+
 def add(a, b):
     return a + b
 
@@ -23,6 +28,10 @@ def menu():
     print("3. Множення (*)")
     print("4. Ділення (/)")
     print("5. Остача від ділення (%)")
+    print("6. Логарифм числа (log (base) num)")
+    print("7. Натуральний логарифм (lg num)")
+    print("8. Десятичний логарифм числа (log (10) num)")
+    print("9. Факторіал (!num))")
     print("0. Вихід")
 
 if __name__ == "__main__":
@@ -48,5 +57,18 @@ if __name__ == "__main__":
                     print("Результат:", modulo(num1, num2))
             except ValueError:
                 print("Помилка: введіть коректне число!")
+
+        elif choice in ["6", "7", "6", "9"]:
+            num1 = float(input("Введіть число"))
+            if choice == "6":
+                num2 = float(input("Введіть базу логарифма"))
+                print("Результат:", log(num1, num2))
+            elif choice == "7":
+                print("Результат:", ln(num1))
+            elif choice == "8":
+                print("Результат:", log10(num1))
+            elif choice == "9":
+                print("Результат:", factorial(num1))
+
         else:
             print("Невірний вибір, спробуйте ще раз.")
