@@ -1,6 +1,7 @@
 from math import log10, log, e
 import math
 from complex_operations import ln, factorial
+from sin_cos_operations import sin_number, cos_number
 
 
 def add(a, b):
@@ -34,6 +35,8 @@ def menu():
     print("9. Факторіал (!num))")
     print("10. Степен (num^num)")
     print("11. Въведете число за квадратен корен (sqrt(num))")
+    print("12. Sinus (sin)")
+    print("13. Cosinus (sin)")
     print("0. Вихід")
 
 if __name__ == "__main__":
@@ -82,5 +85,11 @@ if __name__ == "__main__":
             if choice == ["11"]:
                 result_sqrt = math.sqrt(value)
                 print(f"sqrt({value}) = {result_sqrt}")
+        elif choice in ["12", "13"]:
+            num = int(input("Введіть число: "))
+            if choice == "12":
+                print("Результат:", sin_number(num))
+            elif choice == "13":
+                print("Результат:", cos_number(num))
         else:
             print("Невірний вибір, спробуйте ще раз.")
