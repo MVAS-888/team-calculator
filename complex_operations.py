@@ -2,14 +2,14 @@ from math import log, e
 
 
 def log_10(val: int) -> float:
-    return log10(val)
+    return log_10(val)
 
 
 def ln(val: int) -> float:
     return log(val, e)
 
 
-def factorial(val: int) -> int
+def factorial(val: int) -> int:
     if val == 1:
         return 1
     

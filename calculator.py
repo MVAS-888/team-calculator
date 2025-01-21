@@ -1,5 +1,5 @@
 from math import log10, log, e
-
+import math
 from complex_operations import ln, factorial
 
 
@@ -32,6 +32,8 @@ def menu():
     print("7. Натуральний логарифм (lg num)")
     print("8. Десятичний логарифм числа (log (10) num)")
     print("9. Факторіал (!num))")
+    print("10. Степен (num^num)")
+    print("11. Въведете число за квадратен корен (sqrt(num))")
     print("0. Вихід")
 
 if __name__ == "__main__":
@@ -69,6 +71,16 @@ if __name__ == "__main__":
                 print("Результат:", log10(num1))
             elif choice == "9":
                 print("Результат:", factorial(num1))
-
+        elif choice in ["10"]:
+            x = float(input("Въведете число x: "))
+            n = float(input("Въведете степен n: "))
+            if choice == "10":
+                result_pow = x ** n
+                print(f"{x}^{n} = {result_pow}")
+        elif choice in ["11"]:
+            value = float(input("Въведете число за квадратен корен: "))
+            if choice == ["11"]:
+                result_sqrt = math.sqrt(value)
+                print(f"sqrt({value}) = {result_sqrt}")
         else:
             print("Невірний вибір, спробуйте ще раз.")
