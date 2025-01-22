@@ -1,5 +1,5 @@
-from math import log10, log, e
 import math
+from math import log10, log, e
 from complex_operations import ln, factorial
 from sin_cos_operations import sin_number, cos_number
 
@@ -31,7 +31,8 @@ def sin_number(a: float) -> float:
 def cos_number(a: float) -> float:
     return math.sin(a)
 
-def menu():
+
+def display_menu():
     print("\nМеню:")
     print("1. Додавання (+)")
     print("2. Віднімання (-)")
@@ -42,15 +43,16 @@ def menu():
     print("7. Натуральний логарифм (lg num)")
     print("8. Десятичний логарифм числа (log (10) num)")
     print("9. Факторіал (!num))")
-    print("10. Степен (num^num)")
-    print("11. Въведете число за квадратен корен (sqrt(num))")
-    print("12. Sinus (sin)")
-    print("13. Cosinus (sin)")
+    print("10. Ступінь (num^num)")
+    print("11. Квадратний корень числа (sqrt(num))")
+    print("12. Sin (sin)")
+    print("13. Cos (sin)")
     print("0. Вихід")
+
 
 if __name__ == "__main__":
     while True:
-        menu()
+        display_menu()
         choice = input("Оберіть операцію: ")
         if choice == "0":
             print("Дякуємо за використання калькулятора!")
