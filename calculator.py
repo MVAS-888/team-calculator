@@ -41,7 +41,7 @@ def get_user_input(expected: int, input_messages: list[str] = None) -> list[int]
 
     numbers = []
     counter = 0
-    while counter < numbers:
+    while counter < expected:
         num: str = input(
             input_messages[counter] if input_messages else "Введіть число: "
         )
@@ -50,7 +50,7 @@ def get_user_input(expected: int, input_messages: list[str] = None) -> list[int]
         else:
             print("Невалідне число. Доступні лише цілі, позитивні та від'ємні числа")
             continue
-        expected -= 1
+        counter += 1
 
 
 menu_operations_mapping = {
