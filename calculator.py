@@ -52,7 +52,7 @@ def get_user_input(expected: int, input_messages: list[str] = None) -> list[int]
             continue
         counter += 1
     
-    return numbres
+    return numbers
 
 
 menu_operations_mapping = {
