@@ -1,35 +1,8 @@
 import math
 from math import log10, log, e
+from basic_operations import add, divide, modulo, multiply, subtract
 from complex_operations import ln, factorial
 from sin_cos_operations import sin_number, cos_number
-
-
-def add(a, b):
-    return a + b
-
-def subtract(a, b):
-    return a - b
-
-def multiply(a, b):
-    return a * b
-
-def divide(a, b):
-    if b != 0:
-        return a / b
-    else:
-        return "Помилка: ділення на нуль"
-
-def modulo(a, b):
-    return a % b
-
-# OLGA: sin(a)
-def sin_number(a: float) -> float:
-    return math.sin(a)
-
-
-# OLGA: cos(a)
-def cos_number(a: float) -> float:
-    return math.sin(a)
 
 
 def display_menu():
@@ -50,32 +23,52 @@ def display_menu():
     print("0. Вихід")
 
 
-def get_user_input(expected: int) -> list[int]:
+def get_user_input(expected: int, input_messages: list[str] = None) -> list[int]:
     """
-    Asks user to input one or more Z numbers
+    Asks user to input one or more Z numbers.
 
-    :param expected
-        amount of numbers to be inputed by user
+    :param int expected: Amount of numbers to be inputed by user
+    :param input_messages: Customize input message for each number input
 
+    :raises IndexError: if input_message is not None and len(input_message) != expected
+    
     :return tuple of numbers
+
     """
+    if input_messages and len(input_messages) != expected:
+        raise IndexError("Length of input messages should be same as expected amount")
+
     numbers = []
-    while expected > 0:
-        num: str = input("Введіть число: ")
+    counter = 0
+    while counter < numbers:
+        num: str = input(
+            input_messages[counter] if input_messages else "Введіть число: "
+        )
         if num.isalnum() or num[0] == "-" and num[1:].isalnum:
             numbers.append(int(num))
         else:
-            print("Невалідне число. Доступні лише цілі числа")
+            print("Невалідне число. Доступні лише цілі, позитивні та від'ємні числа")
+            continue
         expected -= 1
+
+
+menu_operations_mapping = {}
 
 
 if __name__ == "__main__":
     while True:
         display_menu()
         choice = input("Оберіть операцію: ")
+
         if choice == "0":
             print("Дякуємо за використання калькулятора!")
             break
+        elif choice not in menu_operations_mapping:
+            print("Такої опції не існує!")
+            continue
+
+        
+
         elif choice in ["1", "2", "3", "4", "5", "6", "7"]:
             try:
                 if choice in ["6", "7"]:
