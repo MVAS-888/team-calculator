@@ -50,6 +50,25 @@ def display_menu():
     print("0. Вихід")
 
 
+def get_user_input(expected: int) -> list[int]:
+    """
+    Asks user to input one or more Z numbers
+
+    :param expected
+        amount of numbers to be inputed by user
+
+    :return tuple of numbers
+    """
+    numbers = []
+    while expected > 0:
+        num: str = input("Введіть число: ")
+        if num.isalnum() or num[0] == "-" and num[1:].isalnum:
+            numbers.append(int(num))
+        else:
+            print("Невалідне число. Доступні лише цілі числа")
+        expected -= 1
+
+
 if __name__ == "__main__":
     while True:
         display_menu()
