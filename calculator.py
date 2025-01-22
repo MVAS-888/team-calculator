@@ -1,37 +1,12 @@
-from math import log10, log, e
 import math
+from math import log10, log, e
+from basic_operations import add, divide, modulo, multiply, subtract
 from complex_operations import ln, factorial
 from sin_cos_operations import sin_number, cos_number
+from new_operations_for_calculator import pow_n, square_root
 
 
-def add(a, b):
-    return a + b
-
-def subtract(a, b):
-    return a - b
-
-def multiply(a, b):
-    return a * b
-
-def divide(a, b):
-    if b != 0:
-        return a / b
-    else:
-        return "Помилка: ділення на нуль"
-
-def modulo(a, b):
-    return a % b
-
-# OLGA: sin(a)
-def sin_number(a: float) -> float:
-    return math.sin(a)
-
-
-# OLGA: cos(a)
-def cos_number(a: float) -> float:
-    return math.sin(a)
-
-def menu():
+def display_menu():
     print("\nМеню:")
     print("1. Додавання (+)")
     print("2. Віднімання (-)")
@@ -42,76 +17,79 @@ def menu():
     print("7. Натуральний логарифм (lg num)")
     print("8. Десятичний логарифм числа (log (10) num)")
     print("9. Факторіал (!num))")
-    print("10. Степен (num^num)")
-    print("11. Въведете число за квадратен корен (sqrt(num))")
-    print("12. Sinus (sin)")
-    print("13. Cosinus (sin)")
+    print("10. Ступінь (num^num)")
+    print("11. Квадратний корень числа (sqrt(num))")
+    print("12. Sin (sin)")
+    print("13. Cos (sin)")
     print("0. Вихід")
+
+
+def get_user_input(expected: int, input_messages: list[str] = None) -> list[int]:
+    """
+    Asks user to input one or more Z numbers.
+
+    :param int expected: Amount of numbers to be inputed by user
+    :param input_messages: Customize input message for each number input
+
+    :raises IndexError: if input_message is not None and len(input_message) != expected
+    
+    :return tuple of numbers
+
+    """
+    if input_messages and len(input_messages) != expected:
+        raise IndexError("Length of input messages should be same as expected amount")
+
+    numbers = []
+    counter = 0
+    while counter < expected:
+        num: str = input(
+            input_messages[counter] if input_messages else "Введіть число: "
+        )
+        if num.isalnum() or num[0] == "-" and num[1:].isalnum:
+            numbers.append(int(num))
+        else:
+            print("Невалідне число. Доступні лише цілі, позитивні та від'ємні числа")
+            continue
+        counter += 1
+    
+    return numbers
+
+
+menu_operations_mapping = {
+    "1": [add, 2],
+    "2": [subtract, 2],
+    "3": [multiply, 2],
+    "4": [divide, 2],
+    "5": [modulo, 2],
+    "6": [log, 2, ["Введіть число під логарифмом:", "Введіть базу логарифму:"]],
+    "7": [ln, 1],
+    "8": [log10, 1],
+    "9": [factorial, 1],
+    "10": [pow_n, 2, ["Введіть число:", "Введіть ступінь числа"]],
+    "11": [square_root, 1],
+    "12": [sin_number, 1],
+    "13": [cos_number, 1],
+}
+
 
 if __name__ == "__main__":
     while True:
-        menu()
+        display_menu()
         choice = input("Оберіть операцію: ")
+
         if choice == "0":
             print("Дякуємо за використання калькулятора!")
             break
-        elif choice in ["1", "2", "3", "4", "5", "6", "7"]:
-            try:
-                if choice in ["6", "7"]:
-                    num = float(input("Введіть число для обчислення: "))
-                    if choice == "6":
-                        print("Результат:", sin_number(num))
-                    elif choice == "7":
-                        print("Результат:", cos_number(num))
-                else:
-                    num1 = float(input("Введіть перше число: "))
-                    num2 = float(input("Введіть друге число: "))
-                    if choice == "1":
-                        print("Результат:", add(num1, num2))
-                    elif choice == "2":
-                        print("Результат:", subtract(num1, num2))
-                    elif choice == "3":
-                        print("Результат:", multiply(num1, num2))
-                    elif choice == "4":
-                        print("Результат:", divide(num1, num2))
-                    elif choice == "5":
-                        print("Результат:", modulo(num1, num2))
-                    elif choice == "5":
-                        print("Результат:", modulo(num1, num2))
-                    elif choice == "6":
-                        print("Результат:", sin_number(num1))
-                    elif choice == "7":
-                        print("Результат:", cos_number(num1))
-            except ValueError:
-                print("Помилка: введіть коректне число!")
+        elif choice not in menu_operations_mapping:
+            print("Такої опції не існує!")
+            continue
 
-        elif choice in ["6", "7", "6", "9"]:
-            num1 = float(input("Введіть число"))
-            if choice == "6":
-                num2 = float(input("Введіть базу логарифма"))
-                print("Результат:", log(num1, num2))
-            elif choice == "7":
-                print("Результат:", ln(num1))
-            elif choice == "8":
-                print("Результат:", log10(num1))
-            elif choice == "9":
-                print("Результат:", factorial(num1))
-        elif choice in ["10"]:
-            x = float(input("Въведете число x: "))
-            n = float(input("Въведете степен n: "))
-            if choice == "10":
-                result_pow = x ** n
-                print(f"{x}^{n} = {result_pow}")
-        elif choice in ["11"]:
-            value = float(input("Въведете число за квадратен корен: "))
-            if choice == ["11"]:
-                result_sqrt = math.sqrt(value)
-                print(f"sqrt({value}) = {result_sqrt}")
-        elif choice in ["12", "13"]:
-            num = int(input("Введіть число: "))
-            if choice == "12":
-                print("Результат:", sin_number(num))
-            elif choice == "13":
-                print("Результат:", cos_number(num))
-        else:
-            print("Невірний вибір, спробуйте ще раз.")
+        config = menu_operations_mapping[choice]
+
+        func, expected_numbers = config[0], config[1]
+        custom_input_message = config[2] if len(config) == 3 else None
+
+        numbers = get_user_input(expected_numbers, custom_input_message)
+        result = func(*numbers)
+
+        print("Результат:", result)
