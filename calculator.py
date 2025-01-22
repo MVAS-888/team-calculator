@@ -51,6 +51,8 @@ def get_user_input(expected: int, input_messages: list[str] = None) -> list[int]
             print("Невалідне число. Доступні лише цілі, позитивні та від'ємні числа")
             continue
         counter += 1
+    
+    return numbres
 
 
 menu_operations_mapping = {
